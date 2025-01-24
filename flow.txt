@@ -1,0 +1,6 @@
+Flow
+first version
+looping:
+    get user input -> pass to LLMs -> get response (function, interval)
+    plot the corresponding graph -> get user input
+
