@@ -80,9 +80,12 @@ def plotting(func_name, x, x_min, x_max):
         plot_x_sq(x)
 
 def main():
+    user_input = input(f'{user_greet}')
+    user_prompt = PROMPT + '\nuser_input:' + user_input
     while True:
-        user_input = input(f'{user_greet}')
-        user_prompt = PROMPT + '\nuser_input:' + user_input
+        if user_input is None:
+            user_input = input('Provide a formula of next graph if you are ready!: ')
+            user_prompt = PROMPT + '\nuser_input:' + user_input
 
         response = client.chat.complete(
             model= model,
@@ -103,7 +106,7 @@ def main():
         x_axis = np.linspace(int(x_min), int(x_max), points)
         plotting(func_name, x_axis, x_min, x_max)
         plt.show()
-
+        user_input = None
 if __name__ == '__main__':
     main()
 
