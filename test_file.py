@@ -23,7 +23,7 @@ PROMPT = '''In this program users will ask us to plot a mathematical graph.
                     ex. for sine graph and interval of -1, 2. Response: sine,-1,2
                     for cosine from a to b: cosine,a,b
                     for tangent from a to b: tangent,a,b
-                    for line like y=x from a to b: identity function,a,b
+                    for line like y=x from a to b: identity,a,b
                     for x^2 from a to b: quadratics,a,b
 
             Extra1(no interval): if the users didn't provide an interval.
@@ -66,7 +66,8 @@ def plot_x_sq(x):
     plt.plot(x, y)
     plt.title('Graph of f(x) = x^2')
 
-def plotting(func_name, x):
+def plotting(func_name, x, x_min, x_max):
+    print(f'Plotting {func_name} function in interval: [{x_min}, {x_max}]')
     if func_name == 'sine':
         plot_sin(x)
     elif func_name == 'cosine':
@@ -94,15 +95,16 @@ def main():
         )
         # print(response.choices[0].message.content)
         answer = response.choices[0].message.content
-        print(answer)
         if answer == 'exit':
             print('Thanks for using our plot servive!\nSee ya!')
             break
         func_name, x_min, x_max = answer.split(',')
-        x_axis = np.linspace(int(x_min), int(x_max), 100)
-        plotting(func_name, x_axis)
+        points = (int(x_max) - int(x_min)) * 100
+        x_axis = np.linspace(int(x_min), int(x_max), points)
+        plotting(func_name, x_axis, x_min, x_max)
         plt.show()
 
 if __name__ == '__main__':
     main()
+
 # End of file
