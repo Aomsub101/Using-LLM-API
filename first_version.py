@@ -59,7 +59,7 @@ def plot_tan(x):
 
 def plot_line(x):
     plt.plot(x, x)
-    plt.title('Graph of f(x) = y=x')
+    plt.title('Graph of f(x) = x')
 
 def plot_x_sq(x):
     y = x ** 2
@@ -96,7 +96,7 @@ def main():
         # print(response.choices[0].message.content)
         answer = response.choices[0].message.content
         if answer == 'exit':
-            print('Thanks for using our plot servive!\nSee ya!')
+            print('Thanks for using our plot service!\nSee ya!')
             break
         func_name, x_min, x_max = answer.split(',')
         points = (int(x_max) - int(x_min)) * 100
